@@ -5,9 +5,9 @@ public class RadioTest {
     @Test
     public void shouldSetRadioNumber() {
         Radio station = new Radio();
-        station.setRadioNumber(5);
+        station.setRadioNumber(9);
 
-        int expected = 5;
+        int expected = 9;
         int actual = station.getRadioNumber();
         Assertions.assertEquals(expected, actual);
     }
@@ -53,6 +53,36 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldStartNext() {
+        Radio station = new Radio();
+        station.setRadioNumber(0); // от нуля
+        station.next();
+        int expected = 1;
+        int actual = station.getRadioNumber();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldEndNext() {
+        Radio station = new Radio();
+        station.setRadioNumber(9); // шаг вверх возвращает к началу
+        station.next();
+        int expected = 0;
+        int actual = station.getRadioNumber();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldStartPrev() {
+        Radio station = new Radio();
+        station.setRadioNumber(0);
+        station.prev();
+        int expected = 9;
+        int actual = station.getRadioNumber();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
     public void shouldPrev() {
         Radio station = new Radio();
         station.setRadioNumber(-1); // шаг вниз за последнюю станцию - поднимает вверх
@@ -65,8 +95,8 @@ public class RadioTest {
     @Test
     public void shouldAddPrev() {
         Radio station = new Radio();
-        station.prev(5); // шаг вниз в пределах списка станций
-
+        station.setRadioNumber(5); // выбрали станцию
+        station.prev(); // наш метод переключения
         int expected = 4;
         int actual = station.getRadioNumber();
         Assertions.assertEquals(expected, actual);
@@ -75,8 +105,8 @@ public class RadioTest {
     @Test
     public void shouldAddNext() {
         Radio station = new Radio();
-        station.next(5); // шаг вверх в пределах списка станций
-
+        station.setRadioNumber(5); // шаг вверх в пределах списка станций
+        station.next();
         int expected = 6;
         int actual = station.getRadioNumber();
         Assertions.assertEquals(expected, actual);
@@ -85,8 +115,8 @@ public class RadioTest {
     @Test
     public void shouldAddPlusV() {
         Radio volume = new Radio();
-        volume.plusV(99);
-
+        volume.setCurrentVolume(99);
+        volume.plusV();
         int expected = 100;
         int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
@@ -95,8 +125,28 @@ public class RadioTest {
     @Test
     public void shouldAddMinusV() {
         Radio volume = new Radio();
-        volume.minusV(1);
+        volume.setCurrentVolume(1);
+        volume.minusV();
+        int expected = 0;
+        int actual = volume.getCurrentVolume();
+        Assertions.assertEquals(expected, actual);
+    }
 
+    @Test
+    public void shouldEndPlusV() {
+        Radio volume = new Radio();
+        volume.setCurrentVolume(100);
+        volume.plusV();
+        int expected = 100;
+        int actual = volume.getCurrentVolume();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldEndMinusV() {
+        Radio volume = new Radio();
+        volume.setCurrentVolume(0);
+        volume.minusV();
         int expected = 0;
         int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);

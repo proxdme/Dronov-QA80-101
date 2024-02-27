@@ -1,6 +1,6 @@
 public class Radio {
-    public int radioNumber;
-    public int currentVolume;
+    private int radioNumber;
+    private int currentVolume;
 
     public int getRadioNumber() {
         return radioNumber;
@@ -16,19 +16,19 @@ public class Radio {
         }
     }
 
-    public void next(int newRadioNumber) {
-        if (newRadioNumber > 9) {
+    public void next() {
+        if (radioNumber >= 9) {
             radioNumber = 0;
         } else {
-            radioNumber = newRadioNumber + 1;
+            radioNumber = radioNumber + 1;
         }
     }
 
-    public void prev(int newRadioNumber) {
-        if (newRadioNumber < 0) {
+    public void prev() {
+        if (radioNumber <= 0) {
             radioNumber = 9;
         } else {
-            radioNumber = newRadioNumber - 1;
+            radioNumber = radioNumber - 1;
         }
     }
 
@@ -46,15 +46,15 @@ public class Radio {
         }
     }
 
-    public void plusV(int newCurrentVolume) {
-        if (newCurrentVolume < 100) {
-            currentVolume = newCurrentVolume + 1;
+    public void plusV() {
+        if (currentVolume < 100) {
+            currentVolume = currentVolume + 1;
         }
     }
 
-    public void minusV(int newCurrentVolume) {
-        if (newCurrentVolume > 0) {
-            currentVolume = newCurrentVolume - 1;
+    public void minusV() {
+        if (currentVolume > 0) {
+            currentVolume = currentVolume - 1;
         }
     }
 }
