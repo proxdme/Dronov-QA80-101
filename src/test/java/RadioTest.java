@@ -3,13 +3,24 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
     @Test
-    public void shouldSetRadioNumber() {
-        Radio station = new Radio();
-        station.setRadioNumber(9);
+    public void shouldSetMaxRadioNumber() {
+        Radio maxNumbers = new Radio(30);
+        Assertions.assertEquals(29, maxNumbers.getMaxRadioNumber());
+    }
 
-        int expected = 9;
-        int actual = station.getRadioNumber();
-        Assertions.assertEquals(expected, actual);
+    @Test
+    public void shouldSetRadioNumberCorr() {
+        Radio stationcorr = new Radio(-1);
+
+        Assertions.assertEquals(0, stationcorr.getRadioNumber());
+
+    }
+      @Test
+    public void shouldSetRadioNumber() {
+        Radio station = new Radio(10);
+
+        Assertions.assertEquals(0, station.getRadioNumber());
+
     }
 
     @Test
@@ -151,4 +162,5 @@ public class RadioTest {
         int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
+
 }
