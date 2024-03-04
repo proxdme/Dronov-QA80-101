@@ -1,21 +1,24 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class RadioTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class Radio1Test {
     @Test
     public void shouldSetMaxRadioNumber() {
-        Radio maxNumbers = new Radio(30);
-        Assertions.assertEquals(29, maxNumbers.getMaxRadioNumber());
+        Radio1 maxNumbers = new Radio1(10);
+        Assertions.assertEquals(9, maxNumbers.getMaxRadio());
     }
 
     @Test
     public void shouldSetRadioNumberCorr() {
-        Radio stationcorr = new Radio(-1);
+        Radio1 stationcorr = new Radio1(-1);
 
         Assertions.assertEquals(0, stationcorr.getRadioNumber());
 
     }
-      @Test
+
+    @Test
     public void shouldSetRadioNumber() {
         Radio station = new Radio(10);
 
@@ -25,7 +28,7 @@ public class RadioTest {
 
     @Test
     public void shouldSetCurrentVolume() {
-        Radio volume = new Radio();
+        Radio1 volume = new Radio1();
         volume.setCurrentVolume(50);
 
         int expected = 50;
@@ -35,7 +38,7 @@ public class RadioTest {
 
     @Test
     public void shouldPlusV() {
-        Radio volume = new Radio();
+        Radio1 volume = new Radio1();
         volume.setCurrentVolume(101);
 
         int expected = 100;
@@ -45,7 +48,7 @@ public class RadioTest {
 
     @Test
     public void shouldMinusV() {
-        Radio volume = new Radio();
+        Radio1 volume = new Radio1();
         volume.setCurrentVolume(-1);
 
         int expected = 0;
@@ -55,7 +58,7 @@ public class RadioTest {
 
     @Test
     public void shouldNext() {
-        Radio station = new Radio();
+        Radio1 station = new Radio1();
         station.setRadioNumber(10); // шаг вверх возвращает к началу
 
         int expected = 0;
@@ -65,7 +68,7 @@ public class RadioTest {
 
     @Test
     public void shouldStartNext() {
-        Radio station = new Radio();
+        Radio1 station = new Radio1(10);
         station.setRadioNumber(0); // от нуля
         station.next();
         int expected = 1;
@@ -75,7 +78,7 @@ public class RadioTest {
 
     @Test
     public void shouldEndNext() {
-        Radio station = new Radio();
+        Radio1 station = new Radio1();
         station.setRadioNumber(9); // шаг вверх возвращает к началу
         station.next();
         int expected = 0;
@@ -85,7 +88,7 @@ public class RadioTest {
 
     @Test
     public void shouldStartPrev() {
-        Radio station = new Radio();
+        Radio1 station = new Radio1(10);
         station.setRadioNumber(0);
         station.prev();
         int expected = 9;
@@ -95,7 +98,7 @@ public class RadioTest {
 
     @Test
     public void shouldPrev() {
-        Radio station = new Radio();
+        Radio1 station = new Radio1(10);
         station.setRadioNumber(-1); // шаг вниз за последнюю станцию - поднимает вверх
 
         int expected = 9;
@@ -105,7 +108,7 @@ public class RadioTest {
 
     @Test
     public void shouldAddPrev() {
-        Radio station = new Radio();
+        Radio1 station = new Radio1(10);
         station.setRadioNumber(5); // выбрали станцию
         station.prev(); // наш метод переключения
         int expected = 4;
@@ -115,7 +118,7 @@ public class RadioTest {
 
     @Test
     public void shouldAddNext() {
-        Radio station = new Radio();
+        Radio1 station = new Radio1(10);
         station.setRadioNumber(5); // шаг вверх в пределах списка станций
         station.next();
         int expected = 6;
@@ -125,7 +128,7 @@ public class RadioTest {
 
     @Test
     public void shouldAddPlusV() {
-        Radio volume = new Radio();
+        Radio1 volume = new Radio1();
         volume.setCurrentVolume(99);
         volume.plusV();
         int expected = 100;
@@ -135,7 +138,7 @@ public class RadioTest {
 
     @Test
     public void shouldAddMinusV() {
-        Radio volume = new Radio();
+        Radio1 volume = new Radio1();
         volume.setCurrentVolume(1);
         volume.minusV();
         int expected = 0;
@@ -145,7 +148,7 @@ public class RadioTest {
 
     @Test
     public void shouldEndPlusV() {
-        Radio volume = new Radio();
+        Radio1 volume = new Radio1();
         volume.setCurrentVolume(100);
         volume.plusV();
         int expected = 100;
@@ -155,7 +158,7 @@ public class RadioTest {
 
     @Test
     public void shouldEndMinusV() {
-        Radio volume = new Radio();
+        Radio1 volume = new Radio1();
         volume.setCurrentVolume(0);
         volume.minusV();
         int expected = 0;
